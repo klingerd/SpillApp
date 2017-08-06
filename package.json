@@ -1,0 +1,34 @@
+{
+  "name": "SpillApp",
+  "version": "0.1.0",
+  "description": "Web App for visualizing chemical spills that affect the Hudson River",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Klinger",
+  "license": "MIT",
+  "keywords": [
+    "chemical",
+    "dccc",
+    "google",
+    "hudson",
+    "json",
+    "maps",
+    "react",
+    "spills",
+    "visualization"
+  ],
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "jshint": "^2.9.5"
+  }
+}
