@@ -1,0 +1,82 @@
+{
+  "1986": [
+    {
+      "text": "Before 1986, the data starts to really thin out, however we know that between 1946 and 1976 General Electric dumped millions of pounds of PCBs into the river, which has serious impacts on not only the health of the ecosystem but on New York Residents to this day. It also ended fishing in the river."
+    }
+  ],
+  "1990": [
+    {
+      "text": "In 1990 there were 148 incidents that specifically listed the Hudson River as an affected body of water. That number seems to be going down a bit, but it's safe to say that the river is still being constantly polluted."
+    }
+  ],
+  "1996": [
+    {
+      "text": "It is important, when looking at this data, to keep in mind that the data is entered from each spill incident as reported. NYSDEC is unable to field check and verify all reported information and so you end up with some degree of human error. Take the following incident for example: The spill at 1000 Acre’s ranch occurred in Upstate New York, but the coordinates given were by Philadelphia.",
+      "map_link": {
+        "img": "img/human error1996.png",
+        "coords": {
+          "lat": 40.58164277,
+          "lng": -75.1098632
+        },
+        "zoom": 7
+      }
+    }
+  ],
+  "2003": [
+    {
+      "text": "The red circles indicate “Hazardous Materials” .  For example, the top-most red circle is sodium hypochlorite, also known as bleach.",
+      "map_link": {
+        "img": "img/redcircles2003.png",
+        "coords": {
+          "lat": 41.9828257,
+          "lng": -73.840755
+        },
+        "zoom": 7
+      }
+    }
+  ],
+  "2012": [
+    {
+      "text": "What’s particularly disturbing is that Croton Point Park is a swimming destination, and though water tests in 2012 showed that the area has relatively clean water, this kind of dumping jeopardizes the areas we too often take for granted.",
+      "map_link": {
+        "img": "img/park2012.png",
+        "coords": {
+          "lat": 41.18018,
+          "lng": -73.9048359
+        },
+        "zoom": 13
+      }
+    }
+  ],
+  "2013": [
+    {
+      "text": "Overall, 2013 was one of the best years for the Hudson River. There were a total of 53 incidents that were listed as affecting the Hudson River.  Though that number is a lot, in comparison to the nineties, when that number got up to 148, it shows some sign of improvement."
+    }
+  ],
+  "2014": [
+    {
+      "text": "After over 10 years straight of raw sewage frequently spilling into the Hudson River around the Nyack area, 2014 marks the last year of reported incidents of raw sewage spills in Nyack.  The sewage Right to Know law went into effect in 2013 which rose awareness of this problem, and may have contributed to this improvement.  That said, the area around the Tappan Zee Bridge continued to have a problem with oil spills.",
+      "map_link": {
+        "img": "img/bridge2014.png",
+        "coords": {
+          "lat": 41.085356618,
+          "lng": -73.902997
+        },
+        "zoom": 13
+      }
+    }
+  ],
+  "2017": [
+    {
+      "text": "You’ll notice that the data shows some degree of improvement in spill incidents affecting the Hudson River. However, this data is limited to the what gets reported correctly, and generally, only includes the spills that affect the Hudson River most directly.  This issue continues to be a huge problem.  Click the image on the right to take a look at the Tappan Zee Bridge.  Try flipping through the years, and you can see how it’s repeatedly been a problem area:",
+      "map_link": {
+        "img": "img/bridge2017.png",
+        "coords": {
+          "lat": 41.074099,
+          "lng": -73.9
+        },
+        "zoom": 12
+      }
+    }
+  ]
+}

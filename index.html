@@ -1,21 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SpillApp</title>
-	
-	<meta name="description" content="Web App for visualizing chemical spills that affect the Hudson River">
-	<meta name="author" content="David Klinger">
-	<meta name="viewport" content="width=device-width*2, initial-scale=.8, maximum-scale=1, user-scalable=no" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <title>Spill Incidents affecting the Hudson River</title>
+  <meta name="description" content="This is a visualization of chemical spills and other
+  			hazardous materials over the last in New York that affect the Hudson River,
+  			over the past 30 years.">
+  <meta name="author" content="David Klinger">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
 
-	<link rel="icon" type="image/png" href="img/favicon.png">
-
+  <link rel="icon" type="image/png" href="img/favicon.png">
+    <meta name="description" content="A look at chemical spills in New York over the years" />
+    <meta name="viewport" content="width=device-width*2, initial-scale=.8, maximum-scale=1, user-scalable=no" />
+ 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/SpillApp.min.css"/>
-	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="js/SpillApp.min.js"></script>
+	<script src="index.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvgbYjsYxgjOb3-Jt0bpv0EoLbJA7aRCs&callback=initMap" async defer></script>
 </head>
-<body>
-	<div></div>
+<body> 
+	<img class="invisible" id="read-more-arrow" src="img/down arrow.png">
+	<div class="container">
+		<div class="small-blue-text">Hudson River Spill Incidents in: </div>
+		<h2 id="year-title">2017</h2>
+		<div class="six columns">
+			<div class="map-container" >
+				<div class="map-inner-container">
+					<button class="year-button" id="prev-year" type="button" onclick="changeYear(false)">Prev</button>
+					<div class="loading-label">loading data...</div>
+					<div id="map"></div>
+					<button class="year-button" id="next-year" type="button" onclick="changeYear(true)">Next</button>
+				</div> 
+			</div>
+		</div>
+		<div class="six columns">
+			<div class="info-container">
+				<div id="info-sheet" class="hidden">
+					<div class="date-div"></div>
+					<h5><span id="spill-title"></span> <span id="spill-amount"></span></h5>
+					<div class="info-block"><div class="info-label">location:</div><span id="spill-location"></span></div>
+					<div class="info-block"><div class="info-label">cause:</div><span id="spill-factor"><span></div>
+				</div>
+				<div id="info-placeholder">Select a marker to learn more about the spill incident. <br/><br/>
+					<span class="small-blue-text">(Multiple clicks loop through overlapping markers)</span>
+				</div>
+			</div>
+			<div class="guide-sheet"> 
+				<div class="img-container hidden">
+					<div class="img-label">click to go to on map</div>
+					<img src="" alt="picture of the part of the map being referenced"/>
+				</div>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
 </body>
- 
