@@ -18,6 +18,9 @@ var GEOCODING_ON=false;
 ///////  also change private vars and methods to start with underscore
 function SpillMarker(data){
 	this._placeWhenReady = false;
+	this._gmMarker=null;
+	this
+
 	//TODO: get rid of year...
 	this.year = data.spill_date.slice(0,4);
 	this.date = new Date(data.spill_date);
@@ -92,7 +95,7 @@ SpillMarker.prototype._determinePosAndIcon=function(data){
 	
 	//Now for the POSITION:
 	if(data.location_1 != null){
-		this.position = {
+		this._position = {
 			lat: data.location_1.coordinates[1], 
 			lng: data.location_1.coordinates[0]
 		};
@@ -122,31 +125,38 @@ SpillMarker.prototype._determinePosAndIcon=function(data){
 
 // creates new marker and puts it on the map.
 SpillMarker.prototype._setGmMarker = function(){
-	this.gmMarker=new google.maps.Marker({
-				position: this.position,
+	this._gmMarker=new google.maps.Marker({
+				position: this._position,
 				icon: this.icon,
 				zIndex: 20 - this.icon.scale,
 				map: map
 			});
-	this._addListeners();
+	this._gmMarker.addListener('mouseover', this.onSelected.bind(this));
+	this._gmMarker.addListener('mousedown', this.onSelected.bind(this));
+	this._gmMarker.addListener('mouseout', this.onUnselected.bind(this));
+	this._gmMarker.addListener('mouseup', this.onUnclicked.bind(this));
 };
-SpillMarker.prototype._addListeners=function(){
-	this.gmMarker.addListener('mouseover', this.onSelected.bind(this));
-	this.gmMarker.addListener('mousedown', this.onSelected.bind(this));
-	this.gmMarker.addListener('mouseout', this.onUnselected.bind(this));
-	this.gmMarker.addListener('mouseup', this.onUnclicked.bind(this));
+//makes the marker "appear" selected
+SpillMarker.prototype._showSelected=function(){
+	this.icon.strokeWeight=3;
+	this._gmMarker.setIcon(this.icon);
+};
+//makes the marker "appear" unselected
+SpillMarker.prototype._unshowSelected=function(){
+	this.icon.strokeWeight=1;
+	this._gmMarker.setIcon(this.icon);
 };
 
 //////PUBLIC METHODS   (technically they're all public - but we can pretend):
 
 SpillMarker.prototype.place=function(){
 
-	if(this.position != null){
-		if(this.gmMarker == null){
+	if(this._position != null){
+		if(this._gmMarker == null){
 			this._setGmMarker();
 		}
 		else{
-			this.gmMarker.setMap(map);
+			this._gmMarker.setMap(map);
 		}
 	}
 	else{
@@ -154,30 +164,21 @@ SpillMarker.prototype.place=function(){
 	}
 };
 SpillMarker.prototype.remove=function(){
-	if(this.gmMarker != null){
-		this.gmMarker.setMap(null);
+	if(this._gmMarker != null){
+		this._gmMarker.setMap(null);
 	}
 	this._placeWhenReady=false;
 };
-
-SpillMarker.prototype.unshowSelected=function(){
-	this.icon.strokeWeight=1;
-	this.gmMarker.setIcon(this.icon);
-};
-SpillMarker.prototype.showSelected=function(){
-	this.icon.strokeWeight=3;
-	this.gmMarker.setIcon(this.icon);
-};
 SpillMarker.prototype.onUnclicked = function(){
-	this.gmMarker.setZIndex(lowZIndex);
+	this._gmMarker.setZIndex(lowZIndex);
 	lowZIndex--;
 };
 SpillMarker.prototype.onSelected = function(){
 	if(selectedMarker!=null){
-		selectedMarker.unshowSelected();
+		selectedMarker._unshowSelected();
 	}
 	selectedMarker=this;
-	this.showSelected();
+	this._showSelected();
 	$('#info-placeholder').addClass('hidden');
 	$('#info-sheet .date-div').text((this.date.getMonth()+1) + "/" + this.date.getDate());
 	$('#spill-title').text(this.material_name);
@@ -191,7 +192,7 @@ SpillMarker.prototype.onSelected = function(){
 SpillMarker.prototype.onUnselected = function(){
 	
 	//this.icon.strokeWeight=1;
-	//this.gmMarker.setIcon(this.icon);
+	//this._gmMarker.setIcon(this.icon);
 };
 SpillMarker.prototype.onGeocoded=function(geocode){
 	var bkupSearchTerm, i,
@@ -206,7 +207,7 @@ SpillMarker.prototype.onGeocoded=function(geocode){
 			}
 		}
 		if(nyConfirmed){
-			this.position=geocode.results[0].geometry.location;
+			this._position=geocode.results[0].geometry.location;
 			if(this._placeWhenReady){
 				this._setGmMarker();
 			}
@@ -378,7 +379,7 @@ function refreshMarkers(){
 	$('#info-placeholder').removeClass('hidden');
 	$('.guide-sheet').removeClass('no-border');
 	if(selectedMarker!=null){
-		selectedMarker.unshowSelected();
+		selectedMarker._unshowSelected();
 		selectedMarker=null;
 	}
 	//lowZIndex=0;
